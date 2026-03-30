@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'DM Sans', sans-serif; background: #F5F7F5; color: #0F1F0F; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* animate-in helpers used across components */
+  .animate-in { animation: animIn 0.3s ease-out both; }
+  .fade-in { --tw-enter-opacity: 0; }
+  .zoom-in { --tw-enter-scale: 0.96; }
+  .slide-in-from-bottom-5 { --tw-enter-translate-y: 1.25rem; }
+  .slide-in-from-right { --tw-enter-translate-x: 100%; }
+  .slide-in-from-left { --tw-enter-translate-x: -100%; }
+
+  @keyframes animIn {
+    from {
+      opacity: var(--tw-enter-opacity, 1);
+      transform: translateX(var(--tw-enter-translate-x, 0)) translateY(var(--tw-enter-translate-y, 0)) scale(var(--tw-enter-scale, 1));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0) scale(1);
+    }
+  }
+
+  /* bg-white/8 and bg-white/12 utility fixes for older Tailwind 3 versions */
+  .bg-white\/8 { background-color: rgba(255,255,255,0.08); }
+  .bg-white\/12 { background-color: rgba(255,255,255,0.12); }
+  .bg-white\/6 { background-color: rgba(255,255,255,0.06); }
+  .border-white\/10 { border-color: rgba(255,255,255,0.10); }
+  .text-white\/8 { color: rgba(255,255,255,0.08); }
+}
+
