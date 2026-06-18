@@ -7,6 +7,7 @@ import Hero from './sections/Hero';
 import HowItWorks from './sections/HowItWorks';
 import Products from './sections/Products';
 import Delivery from './sections/Delivery';
+import Testimonials from './sections/Testimonials.jsx';
 import CTA from './sections/CTA';
 
 import CustomerDashboard from './pages/CustomerDashboard';
@@ -44,6 +45,7 @@ const LandingPage = () => (
       <HowItWorks />
       <Products />
       <Delivery />
+      <Testimonials />
       <CTA />
     </main>
     <Footer />

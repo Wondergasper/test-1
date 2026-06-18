@@ -5,20 +5,20 @@ const navItems = [
     id: 'home',
     label: 'Dashboard',
     icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
       </svg>
     ),
   },
   {
     id: 'browse',
-    label: 'Browse Products',
+    label: 'Marketplace',
     icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
       </svg>
     ),
   },
@@ -26,61 +26,63 @@ const navItems = [
     id: 'orders',
     label: 'My Orders',
     icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-      </svg>
-    ),
-  },
-  {
-    id: 'payments',
-    label: 'Payments',
-    icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-        <line x1="2" y1="10" x2="22" y2="10"></line>
-        <line x1="6" y1="15" x2="10" y2="15"></line>
-      </svg>
-    ),
-  },
-  {
-    id: 'track',
-    label: 'Track Delivery',
-    icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="1" y="3" width="15" height="13"></rect>
-        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-        <circle cx="5.5" cy="18.5" r="2.5"></circle>
-        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
       </svg>
     ),
   },
   {
     id: 'account',
-    label: 'My Account',
+    label: 'Settings',
     icon: (
-      <svg className="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
       </svg>
     ),
   },
 ];
 
-const Sidebar = ({ activeTab, onChangeTab }) => {
+const Sidebar = ({ activeTab, onChangeTab, isCollapsed, onToggle }) => {
   return (
-    <aside className="fixed left-0 top-0 w-64 h-screen bg-primary pt-6 hidden md:flex flex-col z-50">
-      {/* Top: Logo */}
-      <div className="px-6 mb-8 flex items-center">
-        <span className="font-display font-bold text-white text-xl tracking-tight">Farm</span>
-        <span className="font-display font-bold text-accent text-xl tracking-tight">Connect</span>
+    <aside 
+      className={`fixed left-0 top-0 h-screen bg-primary pt-8 hidden md:flex flex-col z-50 shadow-level-1 border-r border-white/5 transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'w-20' : 'w-64'
+      }`}
+    >
+      {/* Toggle Button */}
+      <button 
+        onClick={onToggle}
+        className="absolute -right-3 top-10 w-6 h-6 rounded-full bg-secondary-container text-primary flex items-center justify-center shadow-md border border-white/10 active:scale-90 transition-all cursor-pointer z-50"
+        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+      >
+        <svg 
+          className={`w-4 h-4 transition-transform duration-300 ${isCollapsed ? '' : 'rotate-180'}`} 
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      {/* Top: Branding */}
+      <div className={`px-6 mb-12 overflow-hidden transition-all duration-300 ${isCollapsed ? 'items-center' : ''}`}>
+        <div className="flex items-center gap-1">
+          <div className="w-8 h-8 rounded-lg bg-secondary-container flex-shrink-0 flex items-center justify-center text-primary font-display font-bold text-lg shadow-sm">F</div>
+          <div className={`transition-all duration-300 overflow-hidden ${isCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'}`}>
+            <span className="font-display font-bold text-white text-xl tracking-tighter ml-1">Farmers</span>
+            <span className="font-display font-bold text-secondary-container text-xl tracking-tighter ml-1">Market</span>
+          </div>
+        </div>
+        <p className={`font-body text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mt-2 whitespace-nowrap transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+          Customer Panel
+        </p>
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 flex flex-col gap-1">
-        {navItems.map((item, index) => {
+      <nav className="flex-1 px-3 flex flex-col gap-2 overflow-hidden">
+        {navItems.map((item) => {
           const isActive = activeTab === item.id;
 
           return (
@@ -88,41 +90,49 @@ const Sidebar = ({ activeTab, onChangeTab }) => {
               key={item.id}
               type="button"
               onClick={() => onChangeTab(item.id)}
-              aria-current={isActive ? 'page' : undefined}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl font-body text-sm transition-all duration-200 text-left outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+              title={isCollapsed ? item.label : ''}
+              className={`flex items-center rounded-2xl font-body text-sm font-bold transition-all duration-200 text-left outline-none group relative overflow-hidden ${
+                isCollapsed ? 'justify-center py-4 px-0' : 'px-4 py-3.5 gap-4'
+              } ${
                 isActive
-                  ? 'bg-white/10 text-white font-medium'
+                  ? 'bg-secondary-container text-primary shadow-lg shadow-secondary-container/10'
                   : 'text-white/50 hover:bg-white/5 hover:text-white'
-              } ${index === navItems.length - 1 ? 'mt-auto md:mt-0' : ''}`}
+              }`}
             >
-              {item.icon}
-              {item.label}
+              <div className={`transition-colors flex-shrink-0 ${isActive ? 'text-primary' : 'text-white/30 group-hover:text-secondary-container'}`}>
+                {item.icon}
+              </div>
+              <span className={`transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
+                {item.label}
+              </span>
+              
+              {/* Active indicator dot for collapsed state */}
+              {isCollapsed && isActive && (
+                <div className="absolute right-1 w-1 h-4 bg-primary rounded-full"></div>
+              )}
             </button>
           );
         })}
       </nav>
 
-      {/* Bottom User Card */}
-      <div className="px-6 pb-8">
-        <div className="bg-white/8 rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-display font-bold text-white text-sm">
-              AO
-            </div>
-            <div>
-              <p className="font-body font-medium text-white text-sm leading-tight">Adebayo O.</p>
-              <p className="font-body text-white/40 text-[11px] mt-0.5">adebayo@example.com</p>
-            </div>
-          </div>
-          <button className="font-body text-xs text-white/40 hover:text-white/70 mt-4 flex items-center gap-2 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {/* Bottom area */}
+      <div className={`px-3 pb-8 mt-auto pt-8 border-t border-white/5 transition-all duration-300 overflow-hidden ${isCollapsed ? 'items-center' : ''}`}>
+        <button 
+          className={`w-full flex items-center rounded-2xl font-body text-sm font-bold text-white/40 hover:text-error hover:bg-error/5 transition-all duration-200 outline-none cursor-pointer group ${
+            isCollapsed ? 'justify-center py-4 px-0' : 'px-4 py-3.5 gap-4'
+          }`}
+        >
+          <div className="text-white/20 group-hover:text-error transition-colors flex-shrink-0">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
             </svg>
+          </div>
+          <span className={`transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
             Log Out
-          </button>
-        </div>
+          </span>
+        </button>
       </div>
     </aside>
   );

@@ -10,12 +10,13 @@ const Button = ({
   className = '',
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-body focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 outline-none';
+  const baseClasses = 'inline-flex items-center justify-center font-body focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 outline-none cursor-pointer';
   
   const variants = {
-    primary: 'bg-primary text-white font-medium rounded-full border-none hover:bg-[#162d1e] hover:-translate-y-0.5 hover:shadow-soft transition-all duration-200',
-    ghost: 'bg-transparent border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition-all duration-200',
-    accent: 'bg-accent text-white rounded-full font-medium hover:bg-[#2d9458] hover:-translate-y-0.5 hover:shadow-soft transition-all duration-200',
+    primary: 'bg-secondary-container text-primary font-semibold rounded-full border-none hover:bg-secondary-container/90 hover:-translate-y-0.5 active:scale-95 hover:shadow-level-1 transition-all duration-200',
+    secondary: 'bg-primary text-on-primary rounded-full font-semibold hover:bg-primary/90 hover:-translate-y-0.5 active:scale-95 hover:shadow-level-1 transition-all duration-200',
+    ghost: 'bg-transparent border-2 border-primary text-primary font-semibold rounded-full hover:bg-surface active:scale-95 transition-all duration-200',
+    accent: 'bg-secondary-container text-primary rounded-full font-semibold hover:bg-secondary-container/90 hover:-translate-y-0.5 active:scale-95 hover:shadow-level-1 transition-all duration-200',
   };
 
   const sizes = {

@@ -9,9 +9,9 @@ const ToastNotification = ({ message, variant = 'success', onClose }) => {
   }, [onClose]);
 
   const variants = {
-    success: 'bg-primary border-accent',
-    error: 'bg-red-900 border-red-400',
-    warning: 'bg-[#7a3d00] border-orange'
+    success: 'bg-primary border-secondary-container',
+    error: 'bg-error border-error-container',
+    warning: 'bg-secondary text-white border-secondary-fixed-dim'
   };
 
   return (
