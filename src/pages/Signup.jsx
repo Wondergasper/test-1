@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 
 const Signup = () => {
-  const [role, setRole] = useState('buyer');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const defaultRole = location.state?.role || 'buyer';
+  const [role, setRole] = useState(defaultRole);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!email || !firstName || !lastName || !password) return;
+    // Redirect to OTP verification with user details
+    navigate('/otp-verification', { state: { email, role } });
+  };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6 relative overflow-hidden">
@@ -36,12 +50,14 @@ const Signup = () => {
             }}
           ></div>
           <button 
+            type="button"
             onClick={() => setRole('buyer')}
             className={`relative z-10 py-3.5 font-body text-sm font-bold transition-colors duration-200 cursor-pointer ${role === 'buyer' ? 'text-on-surface' : 'text-on-surface-variant'}`}
           >
             I want to Buy
           </button>
           <button 
+            type="button"
             onClick={() => setRole('farmer')}
             className={`relative z-10 py-3.5 font-body text-sm font-bold transition-colors duration-200 cursor-pointer ${role === 'farmer' ? 'text-on-surface' : 'text-on-surface-variant'}`}
           >
@@ -49,33 +65,61 @@ const Signup = () => {
           </button>
         </div>
 
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="font-body font-bold text-sm text-on-surface">First Name</label>
-              <input type="text" placeholder="Amara" className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" />
+              <input 
+                type="text" 
+                required 
+                placeholder="Amara" 
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" 
+              />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="font-body font-bold text-sm text-on-surface">Last Name</label>
-              <input type="text" placeholder="Bayo" className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" />
+              <input 
+                type="text" 
+                required 
+                placeholder="Bayo" 
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" 
+              />
             </div>
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="font-body font-bold text-sm text-on-surface">Email Address</label>
-            <input type="email" placeholder="amara@example.com" className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" />
+            <input 
+              type="email" 
+              required 
+              placeholder="amara@example.com" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" 
+            />
           </div>
 
           <div className="flex flex-col gap-1.5">
             <label className="font-body font-bold text-sm text-on-surface">Password</label>
-            <input type="password" placeholder="Create a strong password" className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" />
+            <input 
+              type="password" 
+              required 
+              placeholder="Create a strong password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-white font-body text-sm font-semibold outline-none focus:ring-2 focus:ring-secondary-container/20 transition-all placeholder:text-on-surface-variant/50" 
+            />
           </div>
 
           <p className="font-body text-xs text-on-surface-variant font-medium leading-relaxed mt-2 italic px-2">
             By signing up, you agree to our <span className="text-primary font-bold underline cursor-pointer">Terms</span> and that you are located in Nigeria.
           </p>
 
-          <Button variant="primary" size="lg" className="w-full mt-4 font-bold" href={role === 'farmer' ? '/dashboard/admin' : '/dashboard/customer'}>
+          <Button type="submit" variant="primary" size="lg" className="w-full mt-4 font-bold">
             Create Account
           </Button>
         </form>

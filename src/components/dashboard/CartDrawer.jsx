@@ -15,20 +15,27 @@ const CartDrawer = ({
   onBrowseProducts,
 }) => {
   const [step, setStep] = useState('cart'); // 'cart' or 'payment'
+  const [deliveryType, setDeliveryType] = useState('standard');
 
   // Reset to cart step when drawer closes
   useEffect(() => {
     if (!isOpen) {
-      const timer = setTimeout(() => setStep('cart'), 300);
+      const timer = setTimeout(() => {
+        setStep('cart');
+        setDeliveryType('standard');
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
+
+  const deliveryFee = deliveryType === 'standard' ? 850 : 1500;
+  const grandTotal = subtotal + deliveryFee;
 
   const handleCheckoutClick = () => {
     if (step === 'cart') {
       setStep('payment');
     } else {
-      onCheckout();
+      onCheckout(deliveryFee);
       setStep('cart');
     }
   };
@@ -51,7 +58,11 @@ const CartDrawer = ({
         <div className="flex justify-between items-center px-6 py-5 border-b border-outline-variant bg-primary shrink-0">
           <div className="flex items-center gap-3">
             {step === 'payment' && (
-              <button onClick={() => setStep('cart')} className="text-white/60 hover:text-white transition-colors p-1 -ml-1">
+              <button 
+                type="button"
+                onClick={() => setStep('cart')} 
+                className="text-white/60 hover:text-white transition-colors p-1 -ml-1 cursor-pointer"
+              >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
               </button>
             )}
@@ -93,8 +104,8 @@ const CartDrawer = ({
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-body font-bold text-sm text-on-surface truncate">{item.name}</p>
-                    <p className="font-body text-xs text-on-surface-variant mt-0.5 font-semibold">{formatCurrency(item.priceValue)} / kg</p>
+                    <p className="font-body font-bold text-sm text-on-surface truncate text-left">{item.name}</p>
+                    <p className="font-body text-xs text-on-surface-variant mt-0.5 font-semibold text-left">{formatCurrency(item.priceValue)} / kg</p>
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     <div className="flex items-center gap-1.5 bg-surface-container border border-outline-variant rounded-xl px-1.5 py-1">
@@ -112,7 +123,7 @@ const CartDrawer = ({
             )
           ) : (
             <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-right-4 duration-300">
-              <section>
+              <section className="text-left">
                 <h3 className="font-body font-bold text-xs text-on-surface-variant uppercase tracking-widest mb-3">Delivery Address</h3>
                 <div className="bg-surface-container-low rounded-xl p-4 border border-outline-variant/30 flex items-start gap-3">
                   <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -123,38 +134,68 @@ const CartDrawer = ({
                 </div>
               </section>
 
-              <section>
-                <h3 className="font-body font-bold text-xs text-on-surface-variant uppercase tracking-widest mb-3">Payment Method</h3>
-                <div className="flex flex-col gap-3">
-                   <button className="bg-primary text-white p-4 rounded-xl flex items-center justify-between border-2 border-primary shadow-level-1">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center"><svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
-                        <p className="font-body font-bold text-sm tracking-tight">Visa ending in 2048</p>
-                      </div>
-                      <div className="w-5 h-5 rounded-full border-4 border-secondary-container bg-primary"></div>
-                   </button>
-                   <button className="bg-white border border-outline-variant/50 p-4 rounded-xl flex items-center justify-between hover:border-primary transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-surface-container flex items-center justify-center"><svg className="w-5 h-5 text-on-surface-variant" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21v-4m18 4v-4M3 10h18M5 10V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3m0 11H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2z"></path></svg></div>
-                        <p className="font-body font-bold text-sm text-on-surface tracking-tight">Bank Transfer</p>
-                      </div>
-                      <div className="w-5 h-5 rounded-full border-2 border-outline-variant"></div>
-                   </button>
+              {/* Delivery Options Selection */}
+              <section className="text-left">
+                <h3 className="font-body font-bold text-xs text-on-surface-variant uppercase tracking-widest mb-3">Delivery Options</h3>
+                <div className="flex flex-col gap-2">
+                  <button 
+                    type="button"
+                    onClick={() => setDeliveryType('standard')}
+                    className={`p-3 rounded-xl border flex items-center justify-between transition-colors cursor-pointer w-full ${
+                      deliveryType === 'standard' 
+                        ? 'border-primary bg-primary/5 text-primary' 
+                        : 'border-outline-variant/50 bg-white hover:border-primary text-on-surface'
+                    }`}
+                  >
+                    <div className="text-left">
+                      <p className="font-body font-bold text-sm">Standard Delivery</p>
+                      <p className="font-body text-xs text-on-surface-variant mt-0.5 font-medium">1 - 2 business days</p>
+                    </div>
+                    <span className="font-display font-bold text-sm">₦850</span>
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => setDeliveryType('express')}
+                    className={`p-3 rounded-xl border flex items-center justify-between transition-colors cursor-pointer w-full ${
+                      deliveryType === 'express' 
+                        ? 'border-primary bg-primary/5 text-primary' 
+                        : 'border-outline-variant/50 bg-white hover:border-primary text-on-surface'
+                    }`}
+                  >
+                    <div className="text-left">
+                      <p className="font-body font-bold text-sm">Express Delivery</p>
+                      <p className="font-body text-xs text-on-surface-variant mt-0.5 font-medium">Same-day shipping</p>
+                    </div>
+                    <span className="font-display font-bold text-sm">₦1,500</span>
+                  </button>
                 </div>
               </section>
 
-              <section className="bg-surface-container-low rounded-xl p-4 border border-outline-variant/30">
+              <section className="text-left">
+                <h3 className="font-body font-bold text-xs text-on-surface-variant uppercase tracking-widest mb-3">Payment Method</h3>
+                <div className="flex flex-col gap-3">
+                   <div className="bg-primary text-white p-4 rounded-xl flex items-center justify-between border-2 border-primary shadow-level-1 w-full text-left">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center"><svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg></div>
+                        <p className="font-body font-bold text-sm tracking-tight">Market Wallet</p>
+                      </div>
+                      <div className="w-5 h-5 rounded-full border-4 border-secondary-container bg-primary"></div>
+                   </div>
+                </div>
+              </section>
+
+              <section className="bg-surface-container-low rounded-xl p-4 border border-outline-variant/30 text-left">
                  <div className="flex justify-between items-center mb-2">
                     <span className="font-body text-xs text-on-surface-variant font-medium">Order Subtotal</span>
                     <span className="font-body text-xs text-on-surface font-bold">{formatCurrency(subtotal)}</span>
                  </div>
                  <div className="flex justify-between items-center mb-2">
                     <span className="font-body text-xs text-on-surface-variant font-medium">Delivery Fee</span>
-                    <span className="font-body text-xs text-on-surface font-bold">{formatCurrency(850)}</span>
+                    <span className="font-body text-xs text-on-surface font-bold">{formatCurrency(deliveryFee)}</span>
                  </div>
                  <div className="flex justify-between items-center mt-3 pt-3 border-t border-outline-variant/30">
                     <span className="font-body text-sm text-on-surface font-bold">Total to Pay</span>
-                    <span className="font-display text-lg text-primary font-bold">{formatCurrency(subtotal + 850)}</span>
+                    <span className="font-display text-lg text-primary font-bold">{formatCurrency(grandTotal)}</span>
                  </div>
               </section>
             </div>
@@ -165,14 +206,14 @@ const CartDrawer = ({
           <div className="flex justify-between items-center font-body font-bold text-on-surface mb-4">
             <span>{step === 'cart' ? 'Subtotal' : 'Grand Total'}</span>
             <span className="font-display font-bold text-lg text-primary tracking-tight">
-              {formatCurrency(step === 'cart' ? subtotal : subtotal + 850)}
+              {formatCurrency(step === 'cart' ? subtotal : grandTotal)}
             </span>
           </div>
           <Button variant="primary" size="lg" className="w-full active:scale-95 transition-transform duration-100 font-bold" onClick={handleCheckoutClick} disabled={items.length === 0}>
-            {step === 'cart' ? `Checkout · ${formatCurrency(subtotal)}` : `Confirm & Pay · ${formatCurrency(subtotal + 850)}`}
+            {step === 'cart' ? `Checkout · ${formatCurrency(subtotal)}` : `Confirm & Pay · ${formatCurrency(grandTotal)}`}
           </Button>
           <p className="font-body text-xs text-on-surface-variant font-medium text-center mt-3">
-            {step === 'cart' ? 'Delivery calculated at next step' : 'Secure payment via Paystack'}
+            {step === 'cart' ? 'Delivery calculated at next step' : 'Secure payment via Market Wallet'}
           </p>
         </div>
       </div>
