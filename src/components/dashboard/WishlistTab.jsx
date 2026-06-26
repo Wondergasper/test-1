@@ -2,14 +2,15 @@ import React from 'react';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import Tag from '../ui/Tag';
+import { useCustomer, formatCurrency } from '../../context/CustomerContext';
 
-const WishlistTab = ({
-  wishlistItems = [],
-  onMoveToCart,
-  onRemoveFromWishlist,
-  formatCurrency,
-  handleTabChange
-}) => {
+const WishlistTab = () => {
+  const {
+    wishlistItems,
+    handleMoveToCart: onMoveToCart,
+    handleToggleWishlist: onRemoveFromWishlist,
+    handleTabChange,
+  } = useCustomer();
   return (
     <div className="animate-in fade-in duration-300">
       <div className="mb-8 hidden md:block">

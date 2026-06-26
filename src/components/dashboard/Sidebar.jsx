@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCustomer } from '../../context/CustomerContext';
 
 const navItems = [
   {
@@ -54,7 +55,10 @@ const navItems = [
   },
 ];
 
-const Sidebar = ({ activeTab, onChangeTab, isCollapsed, onToggle }) => {
+const Sidebar = () => {
+  const { activeTab, handleTabChange, isCollapsed, setIsCollapsed } = useCustomer();
+  const onToggle = () => setIsCollapsed(!isCollapsed);
+  const onChangeTab = handleTabChange;
   return (
     <aside 
       className={`fixed left-0 top-0 h-screen bg-primary pt-8 hidden md:flex flex-col z-50 shadow-level-1 border-r border-white/5 transition-all duration-300 ease-in-out ${

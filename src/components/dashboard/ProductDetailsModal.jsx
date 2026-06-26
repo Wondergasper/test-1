@@ -2,16 +2,20 @@ import React from 'react';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import Tag from '../ui/Tag';
+import { useCustomer, formatCurrency } from '../../context/CustomerContext';
 
-const ProductDetailsModal = ({
-  isOpen,
-  onClose,
-  product,
-  quantity = 1,
-  onAdjustQuantity,
-  onAddToCart,
-  onBuyNow
-}) => {
+const ProductDetailsModal = () => {
+  const {
+    selectedProduct: product,
+    modalQuantity: quantity,
+    adjustModalQuantity: onAdjustQuantity,
+    handleAddToCartFromModal: onAddToCart,
+    handleBuyNow: onBuyNow,
+    setSelectedProduct,
+  } = useCustomer();
+
+  const isOpen = product !== null;
+  const onClose = () => setSelectedProduct(null);
   if (!isOpen || !product) return null;
 
   return (

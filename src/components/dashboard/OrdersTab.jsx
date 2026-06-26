@@ -2,18 +2,20 @@ import React from 'react';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import { ORDER_FILTERS } from '../../data/mockData';
+import { useCustomer, formatCurrency } from '../../context/CustomerContext';
 
-const OrdersTab = ({
-  selectedOrderForTracking,
-  setSelectedOrderForTracking,
-  orderFilter,
-  setOrderFilter,
-  filteredOrders,
-  formatCurrency,
-  handleDownloadReceipt,
-  handleTabChange,
-  onCancelOrder,
-}) => {
+const OrdersTab = () => {
+  const {
+    selectedOrderForTracking,
+    setSelectedOrderForTracking,
+    orderFilter,
+    setOrderFilter,
+    filteredOrders,
+    handleDownloadReceipt,
+    handleTabChange,
+    handleCancelOrder: onCancelOrder,
+  } = useCustomer();
+
   if (selectedOrderForTracking) {
     return (
       <div className="animate-in slide-in-from-right duration-300">

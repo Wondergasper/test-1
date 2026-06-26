@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../ui/Button';
+import { useCustomer } from '../../context/CustomerContext';
 
 const formatCurrency = (amount) => `₦${amount.toLocaleString()}`;
 
-const CartDrawer = ({
-  isOpen,
-  onClose,
-  items,
-  subtotal,
-  onDecreaseQuantity,
-  onIncreaseQuantity,
-  onRemoveItem,
-  onCheckout,
-  onBrowseProducts,
-}) => {
+const CartDrawer = () => {
+  const {
+    isCartOpen: isOpen,
+    setIsCartOpen,
+    cartItems: items,
+    cartSubtotal: subtotal,
+    updateCartQuantity,
+    handleRemoveCartItem: onRemoveItem,
+    handleCheckout: onCheckout,
+    handleTabChange,
+  } = useCustomer();
+
+  const onClose = () => setIsCartOpen(false);
+  const onDecreaseQuantity = (productId) => updateCartQuantity(productId, -1);
+  const onIncreaseQuantity = (productId) => updateCartQuantity(productId, 1);
+  const onBrowseProducts = () => {
+    setIsCartOpen(false);
+    handleTabChange('browse');
+  };
+
   const [step, setStep] = useState('cart'); // 'cart' or 'payment'
   const [deliveryType, setDeliveryType] = useState('standard');
 

@@ -1,14 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useCustomer } from '../../context/CustomerContext';
 
-const DashNavbar = ({ 
-  onOpenCart, 
-  onSearch, 
-  notifications = [], 
-  onMarkAllRead, 
-  cartCount = 0, 
-  title = 'Dashboard', 
-  isCollapsed 
-}) => {
+const DashNavbar = () => {
+  const {
+    setIsCartOpen,
+    handleTabChange,
+    notifications,
+    handleMarkNotificationsAllRead,
+    cartCount,
+    currentPageTitle,
+    isCollapsed,
+  } = useCustomer();
+
+  const onOpenCart = () => setIsCartOpen(true);
+  const onSearch = () => handleTabChange('browse');
+  const onMarkAllRead = handleMarkNotificationsAllRead;
+  const title = currentPageTitle;
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const notifRef = useRef(null);
 

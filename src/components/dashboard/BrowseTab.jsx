@@ -3,30 +3,32 @@ import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import Tag from '../ui/Tag';
 import { CATEGORY_FILTERS } from '../../data/mockData';
+import { useCustomer } from '../../context/CustomerContext';
 
-const BrowseTab = ({
-  searchQuery,
-  setSearchQuery,
-  selectedCategory,
-  setSelectedCategory,
-  sortType,
-  setSortType,
-  minPrice,
-  setMinPrice,
-  maxPrice,
-  setMaxPrice,
-  selectedLocation,
-  setSelectedLocation,
-  filteredProducts,
-  productQuantities,
-  adjustProductQuantity,
-  handleAddToCart,
-  handleTabChange,
-  wishlistItems = [],
-  onToggleWishlist,
-  onSelectProduct,
-  onBuyNow
-}) => {
+const BrowseTab = () => {
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedCategory,
+    setSelectedCategory,
+    sortType,
+    setSortType,
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice,
+    selectedLocation,
+    setSelectedLocation,
+    filteredProducts,
+    productQuantities,
+    adjustProductQuantity,
+    handleAddToCart,
+    handleTabChange,
+    wishlistItems,
+    handleToggleWishlist: onToggleWishlist,
+    handleOpenProductDetails: onSelectProduct,
+    handleBuyNow: onBuyNow,
+  } = useCustomer();
   const [showFilters, setShowFilters] = useState(false);
 
   // Derive unique locations from filtered products or static list

@@ -1,14 +1,15 @@
 import React from 'react';
 import Badge from '../ui/Badge';
+import { useCustomer, formatCurrency } from '../../context/CustomerContext';
 
-const HomeTab = ({
-  orders,
-  walletBalance,
-  formatCurrency,
-  handleTabChange,
-  setSelectedOrderForTracking,
-  setSettingsTab,
-}) => {
+const HomeTab = () => {
+  const {
+    orders,
+    walletBalance,
+    handleTabChange,
+    setSelectedOrderForTracking,
+    setSettingsTab,
+  } = useCustomer();
   return (
     <div className="animate-in fade-in duration-500 relative">
       {/* Aesthetic Background Decorations */}

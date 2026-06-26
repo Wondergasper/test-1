@@ -1,16 +1,17 @@
 import React from 'react';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
+import { useCustomer, formatCurrency } from '../../context/CustomerContext';
 
-const AccountTab = ({
-  settingsTab,
-  setSettingsTab,
-  walletBalance,
-  handleTopUp,
-  walletTransactions,
-  formatCurrency,
-  showToast,
-}) => {
+const AccountTab = () => {
+  const {
+    settingsTab,
+    setSettingsTab,
+    walletBalance,
+    handleTopUp,
+    walletTransactions,
+    showToast,
+  } = useCustomer();
   const subTabs = [
     { id: 'profile', label: 'Profile' },
     { id: 'notifications', label: 'Notifications' },

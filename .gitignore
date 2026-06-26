@@ -1,3 +1,9 @@
 /node_modules
 /dist
 vite.config.js.timestamp-*
+features_and_reiew.md
+missing_pages_report.md
+ORIGINAL_REQUEST.md
+/.agent
+.agents
+features_and_review.md

@@ -20,6 +20,7 @@ import Signup from './pages/Signup';
 import Unauthorised from './pages/Unauthorised';
 import ForgotPassword from './pages/ForgotPassword';
 import OtpVerification from './pages/OtpVerification';
+import { CustomerProvider } from './context/CustomerContext';
 
 // Check currentUser session dynamically
 const getSession = () => {
@@ -94,7 +95,9 @@ function App() {
           path="/dashboard/customer/*"
           element={
             <CustomerRoute>
-              <CustomerDashboard />
+              <CustomerProvider>
+                <CustomerDashboard />
+              </CustomerProvider>
             </CustomerRoute>
           }
         />
